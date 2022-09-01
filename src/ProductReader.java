@@ -19,7 +19,7 @@ public class ProductReader {
 
             if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
             {
-                System.out.printf("%-15s%-20s%-30s%-30s", "ID#", "name", "Description", "Cost");
+                System.out.printf("%-15s%-25s%-30s%-30s", "ID#", "name", "Description", "Cost");
                 System.out.println("\n==========================================================================");
                 chosenFile = chooser.getSelectedFile();
                 Path file = chosenFile.toPath();
@@ -31,7 +31,7 @@ public class ProductReader {
                 {
                     rec = reader.readLine();
                     String[] splitValues = rec.split(", ");
-                    System.out.printf("\n%-15s%-20s%-30s%-30s", splitValues[0], splitValues[1], splitValues[2], splitValues[3]);
+                    System.out.printf("\n%-15s%-25s%-30s%-30s", splitValues[0], splitValues[1], splitValues[2], splitValues[3]);
                 }
                 reader.close(); // must close the file to seal it and flush buffer
                 System.out.println("\n\nData file read!");

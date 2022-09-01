@@ -4,6 +4,14 @@ public class Product {
     private String productDesc;
     private double productCost;
 
+
+    public Product(String IDNum, String productName, String productDesc, double productCost)
+    {
+        this.IDNum = IDNum;
+        this.productName = productName;
+        this.productDesc = productDesc;
+        this.productCost = productCost;
+    }
     public String getIDNum() {
         return IDNum;
     }
@@ -32,5 +40,8 @@ public class Product {
         this.productCost = productCost;
     }
 
-
+    public String toCSVDataRecord()
+    {
+        return IDNum + ", " + productName + ", " + productDesc + ", " + productCost;
+    }
 }

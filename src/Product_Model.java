@@ -16,24 +16,19 @@ public class Product_Model {
         Scanner pipe = new Scanner(System.in);
 
         boolean done = false;
-        ArrayList<String> personList = new ArrayList<String>();
-        String ID = "";
-        String name = "";
-        String desc = "";
-        double cost = 0;
+        ArrayList<Product> productList= new ArrayList<Product>();
 
 
 
 
         do {
-
-            ID = SafeInput.getNonZeroLenString(pipe,"What the ID?");
-            name = SafeInput.getNonZeroLenString(pipe,"What is the name of your product?");
-            desc = SafeInput.getNonZeroLenString(pipe,"Please write a description of the product");
-            cost = SafeInput.getDouble(pipe,"What is the cost?");
-
-
-            personList.add(ID + ", " + name + ", " + desc + ", " + cost);
+            Product newProduct = new Product(
+                    SafeInput.getNonZeroLenString(pipe, "What is the ID?"),
+                    SafeInput.getNonZeroLenString(pipe, "What is the name?"),
+                    SafeInput.getNonZeroLenString(pipe, "Please write a short description"),
+                    SafeInput.getDouble(pipe, "what is the cost")
+            );
+            productList.add(newProduct);
             done = SafeInput.getYNConfirm(pipe, "Are you finished? [Y/N]");
 
         }while(!done);
@@ -48,9 +43,9 @@ public class Product_Model {
             OutputStream out = new BufferedOutputStream(Files.newOutputStream(file, CREATE));
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
 
-            for(String rec : personList)
+            for(Product rec : productList)
             {
-                writer.write(rec, 0, rec.length());
+                writer.write(rec.toCSVDataRecord(), 0, rec.toCSVDataRecord().length());
                 writer.newLine();
             }
             writer.close();
